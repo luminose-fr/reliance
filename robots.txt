@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://reliance.luminose.fr/sitemap.xml

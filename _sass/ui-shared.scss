@@ -1,0 +1,266 @@
+/* =========================================
+   VARIABLES & PALETTE "RELIANCE"
+   ========================================= */
+:root {
+    /* Identité Visuelle */
+    --accent-color: #BA8B5E; /* Cuivre/Or mat */
+    --accent-light: #F4ECE4; /* Beige très pâle */
+    --accent-dim: #DBCAB6;   /* Beige soutenu pour filigranes */
+
+    /* Couleurs Sombres & Textes */
+    --deep-dark: #1E293B;    /* Anthracite bleuté (Premium) */
+    --text-grey: #475569;    /* Gris Ardoise (Lisible & Doux) */
+    --text-body: #334155;    /* Texte courant */
+
+    /* Fonds */
+    --bg-color: #FAF9F7;     /* Blanc Cassé (Papier d'art) */
+    --white: #ffffff;
+
+    /* Animation */
+    --ease-luxury: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --duration-base: 0.4s;
+
+    /* MAPPING BULMA 1.0 */
+    --bulma-primary-h: 30;  
+    --bulma-primary-s: 45%; 
+    --bulma-primary-l: 55%; 
+    --bulma-primary: var(--accent-color);
+    --bulma-family-sans-serif: 'Futura LT W05 Book', sans-serif;
+    --bulma-body-background-color: var(--bg-color);
+    --bulma-body-color: var(--text-body);
+}
+
+/* =========================================
+   TYPOGRAPHIE & GLOBAL
+   ========================================= */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+    /* EFFET GRAIN (TEXTURE PAPIER) - Subtil et Luxe */
+    background-color: var(--bg-color);
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+}
+
+.font-serif {
+    font-family: 'Abril Display W05 Italic', serif;
+}
+
+/* Surcharges Couleurs Utilitaires */
+.has-text-primary { color: var(--accent-color) !important; }
+.has-background-primary { background-color: var(--accent-color) !important; }
+.has-background-light { background-color: var(--accent-light) !important; }
+.has-text-grey { color: var(--text-grey) !important; }
+.subtitle.has-text-grey { color: var(--text-grey) !important; }
+
+/* =========================================
+   BOUTONS PERSONNALISÉS
+   ========================================= */
+.button.is-primary {
+    background-color: var(--deep-dark) !important;
+    color: var(--white) !important;
+    border: 1px solid var(--deep-dark);
+    font-weight: 500;
+    padding-left: 2rem; padding-right: 2rem;
+    transition: all var(--duration-base) var(--ease-luxury);
+    box-shadow: 0 4px 6px rgba(30, 41, 59, 0.1);
+}
+
+.button.is-primary:hover {
+    background-color: #2D3A4F !important;
+    border-color: #2D3A4F !important;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(30, 41, 59, 0.15);
+}
+
+.button.is-white.is-outlined {
+    background-color: transparent !important;
+    border: 1px solid var(--deep-dark) !important;
+    color: var(--deep-dark) !important;
+    font-weight: 500;
+    transition: all var(--duration-base) var(--ease-luxury);
+}
+
+.button.is-white.is-outlined:hover {
+    background-color: var(--deep-dark) !important;
+    color: var(--white) !important;
+    border-color: var(--deep-dark) !important;
+}
+
+/* =========================================
+   UTILITAIRES CUSTOM
+   ========================================= */
+.mx-auto { margin-left: auto; margin-right: auto; }
+.max-w-700 { max-width: 700px; }
+.max-w-800 { max-width: 800px; }
+.h-full { height: 100%; } 
+.is-relative { position: relative; }
+.overflow-hidden { overflow: hidden; }
+.object-cover { object-fit: cover; }
+.is-cursor-pointer { cursor: pointer; }
+
+.letter-spacing-2 { letter-spacing: 2px; }
+.line-height-12 { line-height: 1.2; }
+
+.shadow-sm { box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); }
+.shadow-xl { box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.01); }
+.shadow-primary { box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); }
+.border-light { border: 1px solid #E2E8F0; }
+
+.rounded-lg { border-radius: 12px; }
+.rounded-2xl { border-radius: 20px; }
+.rounded-bottom { border-bottom-left-radius: 12px; border-bottom-right-radius: 12px; }
+
+/* =========================================
+   COMPOSANTS SPÉCIFIQUES
+   ========================================= */
+
+/* Hero Overlay & Animation */
+.hero-bg-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    /* Dégradé subtil */
+    background: linear-gradient(180deg, rgba(250,249,247,0.6) 0%, rgba(250,249,247,1) 100%);
+    z-index: 0;
+    /* Animation de respiration lente */
+    animation: breathe 10s ease-in-out infinite;
+}
+
+@keyframes breathe {
+    0% { opacity: 0.8; }
+    50% { opacity: 0.5; } /* Laisse apparaître un peu plus l'image ou le fond derrière */
+    100% { opacity: 0.8; }
+}
+
+.hero-body { z-index: 1; position: relative; }
+
+/* Cartes Interactives */
+.card-hover {
+    background-color: #fff;
+    border: 1px solid transparent;
+    transition: all 0.5s var(--ease-luxury);
+}
+.card-hover:hover {
+    transform: translateY(-4px);
+    border-color: rgba(186, 139, 94, 0.3);
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.08);
+}
+
+/* Timeline Verticale */
+.timeline-container {
+    position: relative;
+    padding-left: 2rem;
+    border-left: 2px solid var(--accent-light);
+    margin-left: 1rem;
+}
+
+.timeline-step {
+    position: relative;
+    margin-bottom: 3rem;
+}
+.timeline-step:last-child { margin-bottom: 0; }
+
+.timeline-marker {
+    position: absolute;
+    left: -2rem;
+    top: 0;
+    transform: translateX(-50%);
+    width: 36px; height: 36px;
+    background: var(--white);
+    border: 2px solid var(--accent-color);
+    border-radius: 50%;
+    color: var(--accent-color);
+    font-weight: 700;
+    font-family: 'Abril Display W05 Italic', serif;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    z-index: 2;
+}
+
+/* Pricing Box */
+.pricing-box {
+    max-width: 900px;
+    border-radius: 20px;
+    background: #fff;
+    box-shadow: 0 20px 40px -5px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0,0,0,0.02);
+}
+
+/* Images & Citations */
+.profile-image-container img {
+    border: 5px solid #fff;
+    width: 250px; height: 250px;
+    object-fit: cover;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+}
+
+.image-quote {
+    position: absolute;
+    bottom: -30px; right: -20px;
+    background: var(--accent-color);
+    color: white;
+    padding: 2rem;
+    border-radius: 50%;
+    width: 140px; height: 140px;
+    display: flex; align-items: center; justify-content: center;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(186, 139, 94, 0.3);
+    z-index: 10;
+    font-size: 0.9rem;
+    line-height: 1.3;
+}
+
+.quote-icon {
+    position: absolute;
+    top: -30px; left: -20px;
+    color: var(--accent-dim);
+    opacity: 0.4;
+    z-index: 0;
+    pointer-events: none;
+}
+.content.is-relative p { position: relative; z-index: 1; }
+
+/* FAQ Accordéon */
+.accordion-header {
+    background: #fff;
+    transition: background 0.3s ease;
+}
+.accordion-header:hover { background: #FDFBF9; }
+.accordion-content { transition: max-height 0.4s var(--ease-luxury); }
+
+/* Animation Flèche Hero */
+.icon-float { 
+    animation: floating 3s ease-in-out infinite; 
+    display: inline-block; 
+    opacity: 0.8;
+}
+@keyframes floating {
+    0% { transform: translateY(0); opacity: 0.5; }
+    50% { transform: translateY(8px); opacity: 1; }
+    100% { transform: translateY(0); opacity: 0.5; }
+}
+
+/* Footer Link Highlighting */
+.footer a.text-highlight-footer {
+    color: var(--accent-light) !important;
+    text-decoration: underline;
+    text-decoration-color: var(--accent-color);
+    transition: color 0.3s ease;
+}
+.footer a.text-highlight-footer:hover {
+    color: var(--white) !important;
+}
+
+/* RESPONSIVE */
+@media screen and (min-width: 1024px) {
+    .border-left-desktop { border-left: 1px solid #F1F5F9; }
+    .p-4-desktop { padding: 3rem; }
+}
+@media screen and (max-width: 768px) {
+    .image-quote { display: none; }
+    .hero-body { padding-top: 6rem; }
+    .timeline-container { margin-left: 0.5rem; padding-left: 1.5rem; }
+}

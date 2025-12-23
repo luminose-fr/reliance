@@ -1,0 +1,18 @@
+title: "Luminose - Parcours Reliance"
+email: florent@luminose.fr
+description: "Thérapie et Hypnose Transpersonnelle pour expatriés francophones."
+baseurl: "" 
+url: "https://reliance.luminose.fr"
+
+# Build settings
+markdown: kramdown
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: "default"

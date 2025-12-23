@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- SEO -->
+    <title>{% if page.title %}{{ page.title }} | Reliance{% else %}{{ site.title }}{% endif %}</title>
+    <meta name="description" content="{{ page.description | default: site.description }}">
+    
+    <!-- Styles (Main SCSS compile tout) -->
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/main.css">
+    
+    {% seo %}
+</head>
+<body class="has-navbar-fixed-top">
+
+    <!-- Navigation -->
+    <nav class="navbar is-fixed-top is-glass" role="navigation" aria-label="main navigation">
+        <div class="container">
+            <div class="navbar-brand">
+                <!-- Logo Texte -->
+                <a class="navbar-item font-serif is-size-4 has-text-weight-medium" href="{{ site.baseurl }}/" style="letter-spacing: -0.02em;">
+                    Reliance<span class="has-text-primary">.</span>
+                </a>
+
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+
+            <div id="navbarMenu" class="navbar-menu">
+                <div class="navbar-end">
+                    <a href="#agitation" class="navbar-item has-text-grey-dark">Le Constat</a>
+                    <a href="#solution" class="navbar-item has-text-grey-dark">Le Chemin</a>
+                    <a href="#bio" class="navbar-item has-text-grey-dark">Le Guide</a>
+                    <a href="#faq" class="navbar-item has-text-grey-dark">FAQ</a>
+                    <div class="navbar-item">
+                        <a href="#offre" class="button is-primary is-rounded is-small shadow-primary">
+                            <strong>Entretien de clarté</strong>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Content -->
+    {{ content }}
+
+    <!-- Footer -->
+    <footer class="footer has-background-black-bis has-text-white mt-6 pt-6 pb-6">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-5">
+                    <h3 class="title is-4 has-text-white font-serif">Reliance<span class="has-text-primary">.</span></h3>
+                    <p class="has-text-grey is-size-6">
+                        Un accompagnement créé par <strong>Luminose</strong>.<br>
+                        Reconnecter structure et spiritualité pour les expatriés.
+                    </p>
+                </div>
+                <div class="column is-offset-1 is-3">
+                    <h4 class="title is-7 is-uppercase has-text-primary ls-2 mb-4">Parcours</h4>
+                    <ul>
+                        <li><a href="#agitation" class="has-text-grey-light hover-white">Le Problème</a></li>
+                        <li><a href="#solution" class="has-text-grey-light hover-white">La Solution</a></li>
+                        <li><a href="#offre" class="has-text-grey-light hover-white">L'Offre</a></li>
+                    </ul>
+                </div>
+                <div class="column is-3">
+                    <h4 class="title is-7 is-uppercase has-text-primary ls-2 mb-4">Contact</h4>
+                    <p class="is-size-7 has-text-grey mb-2">{{ site.email }}</p>
+                    <a href="https://www.luminose.fr" target="_blank" class="button is-small is-outlined is-white is-rounded">
+                        <span class="icon"><i class="fas fa-external-link-alt"></i></span>
+                        <span>Site Luminose</span>
+                    </a>
+                </div>
+            </div>
+            <hr class="has-background-grey-darker my-5">
+            <div class="content has-text-centered is-size-7 has-text-grey">
+                <p>&copy; {{ site.time | date: '%Y' }} Florent Jaouali. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ site.baseurl }}/assets/js/main.js"></script>
+</body>
+</html>

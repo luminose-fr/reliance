@@ -1,0 +1,18 @@
+@use "ui-variables" as v;
+
+/* Configuration des variables SASS de Bulma avant le chargement */
+@use "bulma-1.0.4/sass" with (
+    /* Typographie : On connecte vos variables définies dans ui-variables */
+    $family-primary: v.$family-sans-serif,
+    $family-secondary: v.$family-sans-serif,
+    $title-family: v.$family-serif,
+    
+    /* Corps de texte */
+    $body-line-height: 1.6,
+    $body-size: 16px,
+    
+    /* Formes */
+    $radius: 0,
+    $radius-large: 4px,
+    $radius-small: 2px
+);
