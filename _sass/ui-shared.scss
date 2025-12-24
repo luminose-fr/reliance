@@ -244,14 +244,15 @@ body {
 }
 
 /* Footer Link Highlighting */
-.footer a.text-highlight-footer {
-    color: var(--accent-light) !important;
+.footer a {
+    color: inherit;
     text-decoration: underline;
-    text-decoration-color: var(--accent-color);
-    transition: color 0.3s ease;
 }
-.footer a.text-highlight-footer:hover {
+.footer a:hover {
     color: var(--white) !important;
+}
+.footer a.has-text-grey-light {
+    text-decoration: none;
 }
 
 /* RESPONSIVE */

@@ -1,0 +1,40 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no viewport-fit=cover">
+<meta name="description" content="{{ page.description | default: site.description }}">
+{% if page.noindex %}<meta name="robots" content="noindex, nofollow">{% endif %}
+
+<!-- Styles (Main SCSS compile tout) -->
+<link rel="stylesheet" href="{{ site.baseurl }}/assets/css/main.css">
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="{{ site.baseurl }}/favicon.svg">
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "parcours Reliance",
+    "url": "https://reliance.luminose.fr"
+}
+</script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
+    'analytics_storage': 'denied',
+    'personalization_storage': 'denied',
+    'functionality_storage': 'denied',
+    'security_storage': 'denied'
+    });
+</script>
+{% if jekyll.environment == "production" %}
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5MW9P9T6');</script>
+    <!-- End Google Tag Manager -->
+{% endif %}
+{% seo %}
