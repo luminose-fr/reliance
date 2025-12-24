@@ -184,48 +184,66 @@ class CookieBanner {
 }
 
 /* ============================================
- * UTM PARAMETERS PROPAGATION
+ * CALENDLY MANAGER
  * ============================================ */
-class UTMParamsPropagation {
-  init() {
-    const deleteParams = [];
-    const utmParamQueryString = new URLSearchParams(window.location.search);
-
-    utmParamQueryString.forEach((value, key) => {
-      if (!key.startsWith("utm_")) {
-        deleteParams.push(key);
-      }
-    });
-
-    deleteParams.forEach((value) => {
-      utmParamQueryString.delete(value);
-    });
-
-    if (utmParamQueryString.toString()) {
-      document.querySelectorAll("a").forEach((item) => {
-        if (item.href && item.href !== "") {
-          const checkUrl = new URL(item.href);
-          if (checkUrl.host === location.host) {
-            let doNotProcess = false;
-            const linkSearchParams = new URLSearchParams(checkUrl.search);
-            
-            linkSearchParams.forEach((value, key) => {
-              if (key.startsWith("utm_")) doNotProcess = true;
-            });
-            
-            if (doNotProcess) return;
-            
-            checkUrl.search = new URLSearchParams({
-              ...Object.fromEntries(utmParamQueryString),
-              ...Object.fromEntries(linkSearchParams),
-            });
-            
-            item.href = checkUrl.href;
-          }
-        }
-      });
+class CalendlyManager {
+    constructor() {
+        this.baseUrl = 'https://calendly.com/luminose/reliance-entretien-clarte';
+        this.defaultParams = {
+            hide_gdpr_banner: '1'
+        };
     }
-  }
+
+    init() {
+        // Attacher les événements à tous les boutons Calendly
+        const calendlyButtons = document.querySelectorAll('[data-calendly]');
+        calendlyButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.openPopup();
+                return false;
+            });
+        });
+    }
+
+    getUrlWithParams() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const calendlyParams = new URLSearchParams(this.defaultParams);
+        
+        // Récupérer les paramètres UTM standards
+        const utmSource = urlParams.get('utm_source');
+        const utmMedium = urlParams.get('utm_medium');
+        const utmCampaign = urlParams.get('utm_campaign');
+        const utmTerm = urlParams.get('utm_term');
+        const gclid = urlParams.get('gclid');
+        
+        // Propager les UTMs vers Calendly
+        if (utmSource) calendlyParams.set('utm_source', utmSource);
+        if (utmMedium) calendlyParams.set('utm_medium', utmMedium);
+        if (utmCampaign) calendlyParams.set('utm_campaign', utmCampaign);
+        if (utmTerm) calendlyParams.set('utm_term', utmTerm);
+        
+        // Mettre le gclid dans utm_content (Google Ads Click ID)
+        if (gclid) {
+            calendlyParams.set('utm_content', gclid);
+        } else {
+            const utmContent = urlParams.get('utm_content');
+            if (utmContent) calendlyParams.set('utm_content', utmContent);
+        }
+        
+        // Construire l'URL finale
+        return `${this.baseUrl}?${calendlyParams.toString()}`;
+    }
+
+    openPopup() {
+        if (typeof Calendly === 'undefined') {
+            console.error('Calendly widget not loaded');
+            return;
+        }
+        
+        const url = this.getUrlWithParams();
+        Calendly.initPopupWidget({ url: url });
+    }
 }
 
 /* ============================================
@@ -237,8 +255,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const cookieBanner = new CookieBanner();
     cookieBanner.init();
 
-    const utmParams = new UTMParamsPropagation();
-    utmParams.init();
+    // --- INITIALIZE CALENDLY ---
+    const calendlyManager = new CalendlyManager();
+    calendlyManager.init();
 
     // --- NAVBAR BURGER (MOBILE) ---
     const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
