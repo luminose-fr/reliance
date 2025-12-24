@@ -184,6 +184,51 @@ class CookieBanner {
 }
 
 /* ============================================
+ * UTM PARAMETERS PROPAGATION
+ * ============================================ */
+class UTMParamsPropagation {
+  init() {
+    const deleteParams = [];
+    const utmParamQueryString = new URLSearchParams(window.location.search);
+
+    utmParamQueryString.forEach((value, key) => {
+      if (!key.startsWith("utm_")) {
+        deleteParams.push(key);
+      }
+    });
+
+    deleteParams.forEach((value) => {
+      utmParamQueryString.delete(value);
+    });
+
+    if (utmParamQueryString.toString()) {
+      document.querySelectorAll("a").forEach((item) => {
+        if (item.href && item.href !== "") {
+          const checkUrl = new URL(item.href);
+          if (checkUrl.host === location.host) {
+            let doNotProcess = false;
+            const linkSearchParams = new URLSearchParams(checkUrl.search);
+            
+            linkSearchParams.forEach((value, key) => {
+              if (key.startsWith("utm_")) doNotProcess = true;
+            });
+            
+            if (doNotProcess) return;
+            
+            checkUrl.search = new URLSearchParams({
+              ...Object.fromEntries(utmParamQueryString),
+              ...Object.fromEntries(linkSearchParams),
+            });
+            
+            item.href = checkUrl.href;
+          }
+        }
+      });
+    }
+  }
+}
+
+/* ============================================
  * DOM READY - INITIALIZATION
  * ============================================ */
 document.addEventListener('DOMContentLoaded', () => {
@@ -191,6 +236,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- INITIALIZE COOKIE BANNER ---
     const cookieBanner = new CookieBanner();
     cookieBanner.init();
+
+    const utmParams = new UTMParamsPropagation();
+    utmParams.init();
 
     // --- NAVBAR BURGER (MOBILE) ---
     const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
