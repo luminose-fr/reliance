@@ -36,7 +36,9 @@
 html {
     scroll-behavior: smooth;
 }
-
+.navbar-burger{
+    color: var(--text-grey);
+}
 body {
     line-height: 1.8;
     -webkit-font-smoothing: antialiased;
@@ -266,4 +268,3 @@ body {
     .timeline-container { margin-left: 0.5rem; padding-left: 1.5rem; }
     .pricing-box { padding: 1rem !important; }
 }
-* { outline: 1px solid red; }

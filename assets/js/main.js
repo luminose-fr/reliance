@@ -316,19 +316,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- NAVBAR SCROLL EFFECT ---
-    const nav = document.querySelector('.navbar');
-    
-    if (nav) {
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                nav.classList.add('is-scrolled');
-            } else {
-                nav.classList.remove('is-scrolled');
-            }
-        });
-    }
-
     // --- SMOOTH SCROLL WITH OFFSET ---
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
