@@ -262,10 +262,8 @@ body {
 }
 @media screen and (max-width: 768px) {
     .image-quote { display: none; }
-    .hero-body { padding-top: 6rem; }
+    .hero-body { padding-top: 3rem; }
     .timeline-container { margin-left: 0.5rem; padding-left: 1.5rem; }
-    /* Pricing Box */
-    .pricing-box {
-        padding: 1rem !important;
-    }
+    .pricing-box { padding: 1rem !important; }
 }
+* { outline: 1px solid red; }
