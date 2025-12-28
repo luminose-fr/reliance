@@ -13,7 +13,7 @@
     --text-body: #334155;    /* Texte courant */
 
     /* Fonds */
-    --bg-color: #FAF9F7;     /* Blanc Cassé (Papier d'art) */
+    --bg-color: #FAF9F7;
     --white: #ffffff;
 
     /* Animation */
@@ -35,6 +35,8 @@
    ========================================= */
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
+    width: 100%;
 }
 .navbar-burger{
     color: var(--text-grey);
@@ -42,9 +44,11 @@ html {
 body {
     line-height: 1.8;
     -webkit-font-smoothing: antialiased;
-    /* EFFET GRAIN (TEXTURE PAPIER) - Subtil et Luxe */
     background-color: var(--bg-color);
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
 }
 
 .font-serif {
@@ -266,5 +270,6 @@ body {
     .image-quote { display: none; }
     .hero-body { padding-top: 3rem; }
     .timeline-container { margin-left: 0.5rem; padding-left: 1.5rem; }
+    .timeline-marker { left: -1.5rem; }
     .pricing-box { padding: 1rem !important; }
 }
