@@ -259,6 +259,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const calendlyManager = new CalendlyManager();
     calendlyManager.init();
 
+    // --- GÉRER LE HASH AU CHARGEMENT DE LA PAGE ---
+    if (window.location.hash) {
+        // Empêcher le scroll par défaut du navigateur
+        setTimeout(() => {
+            const targetElement = document.querySelector(window.location.hash);
+            if (targetElement) {
+                const headerOffset = 80;
+                const elementPosition = targetElement.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.scrollY - headerOffset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: "smooth"
+                });
+            }
+        }, 0);
+    }
+
     // --- NAVBAR BURGER (MOBILE) ---
     const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
     if ($navbarBurgers.length > 0) {
